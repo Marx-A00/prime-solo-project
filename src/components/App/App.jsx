@@ -19,7 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
+import Audio from '../Audio/Audio';
 import './App.css';
 
 function App() {
@@ -35,6 +35,9 @@ function App() {
     <Router>
       <div>
         <Nav />
+        <Route exact path = "/audio">
+        <Audio />
+        </Route>
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -108,11 +111,6 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
-          </Route>
-
-          {/* If none of the other routes matched, we will show a 404. */}
-          <Route>
-            <h1>404</h1>
           </Route>
         </Switch>
         <Footer />
