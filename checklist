@@ -1,1 +1,28 @@
-- make dev route to bypass login creds 
+- make dev route to bypass login creds
+
+Study header:
+go back and watch first videos
+for science on the shits
+
+- study biquadfilter shit
+
+12/18 Spike:
+
+need to create an object that has structure:
+
+{
+osc1Settings:{
+frequency: osc1val
+detune: detuneval
+type: osc1type
+},
+filterSettings:{
+frequency: filter.frequency.value
+detune: detuneval
+Q: filter.q.val
+gain: filter.gain.val
+type: filter.type
+}
+}
+
+within my store, and access it from anywhere within my project.
