@@ -2,27 +2,26 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // change
-const Osc1 = () => {
-  const appState = useSelector((store) => store.AudioReducer1);
-  let { type, frequency, detune } = appState.osc1Settings;
-  console.log(appState);
-  const dispatch = useDispatch();
+const Osc1 = ({change,settings,changeType}) => {
+  // const appState = useSelector((store) => store.AudioReducer1);
+  let { type, frequency, detune } = settings;
 
-  const change = (e) => {
-    let { id, value } = e.target;
-    dispatch({
-      type: "CHANGE_OSC1",
-      payload: { id, value },
-    });
 
-    const changeType = (e) => {
-      let { id } = e.target;
-      dispatch({
-        type: "CHANGE_OSC1_TYPE",
-        payload: { id },
-      });
-    };
-  };
+  // const change = (e) => {
+  //   let { id, value } = e.target;
+  //   dispatch({
+  //     type: "CHANGE_OSC1",
+  //     payload: { id, value },
+  //   });
+
+    // const changeType = (e) => {
+    //   let { id } = e.target;
+    //   dispatch({
+    //     type: "CHANGE_OSC1_TYPE",
+    //     payload: { id },
+    //   });
+    // };
+  
   return (
     <div className="control">
       <h2>Osc 1</h2>

@@ -1,25 +1,24 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-const Filter = () => {
-  const appState = useSelector((store) => store.AudioReducer1);
-  const { frequency, detune, Q, gain, type } = appState.filterSettings;
-  const dispatch = useDispatch();
 
-  const change = (e) => {
-    let {id,value} = e.target;
-    dispatch({
-        type: "CHANGE_FILTER", payload:{id,value}
-    })
-    const changeType = e =>{
-        let {id} = e.target;
-        dispatch({
-            type: "CHANGE_FILTER_TYPE", payload: {id}
-        })
+const Filter = ({change,settings,changeType}) => {
+  // const appState = useSelector((store) => store.AudioReducer1);
+  const { frequency, detune, Q, gain, type } = settings;
 
-    }
+  // const change = (e) => {
+  //   let {id,value} = e.target;
+  //   dispatch({
+  //       type: "CHANGE_FILTER", payload:{id,value}
+  //   })
+    // const changeType = e =>{
+    //     let {id} = e.target;
+    //     dispatch({
+    //         type: "CHANGE_FILTER_TYPE", payload: {id}
+    //     })
 
-  };
+    // }
+
   return (
     <div className="control">
       <h2>Filter</h2>
@@ -62,11 +61,11 @@ const Filter = () => {
           step="0.1"
         />
       </div>
-      <div className="params">
+      <div className="param">
         <h3>type</h3>
         <button
-          onClick={changeType}
           id="lowpass"
+          onClick={changeType}
           className={`${type === "lowpass" && "active"}`}
         >
           lowpass

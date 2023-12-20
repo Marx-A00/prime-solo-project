@@ -12,6 +12,9 @@ osc1.connect(gain1);
 gain1.connect(filter);
 filter.connect(out);
 
+console.log(osc1);
+
+
 const audioReducer = (
   state = {
     osc1Settings: {
@@ -63,5 +66,4 @@ const audioReducer = (
 };
 
 export default combineReducers({
-  audioReducer,
 });
