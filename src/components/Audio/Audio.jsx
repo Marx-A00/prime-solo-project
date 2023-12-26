@@ -10,12 +10,12 @@ import QwertyHancock from "qwerty-hancock";
 let actx = new AudioContext();
 let out = actx.destination;
 
-let osc1 = actx.createOscillator();
+
 let gain1 = actx.createGain();
 let filter = actx.createBiquadFilter();
 // research biquadfilter later
 
-osc1.connect(gain1);
+
 gain1.connect(filter);
 filter.connect(out);
 // research biquadfilter later
@@ -29,13 +29,12 @@ export default function Audio() {
       id: "keyboard",
       width: "449",
       height: "70",
-      octaves: 3,
+      octaves: 2,
       startNote: "C4",
     })
     keyboard.keyDown = (note,freq) =>{
-      const newOsc = new Osc(actx,"sawtooth",freq,0,null,gain1);
+      const newOsc = new Osc(actx,"sine",freq,0,null,gain1);
       nodes.push(newOsc);
-      console.log("nodes:",nodes)
 
     }
 
@@ -55,9 +54,10 @@ export default function Audio() {
   // state setup
 
   const [osc1Settings, setOsc1Settings] = useState({
-    frequency: osc1.frequency.value,
-    detune: osc1.detune.value,
-    type: osc1.type,
+        // don't need freq
+
+
+
   });
 
   const [filterSettings, setFilterSettings] = useState({
@@ -82,6 +82,7 @@ export default function Audio() {
     let { id } = e.target;
     setOsc1Settings({ ...osc1Settings, type: id });
     osc1.type = id;
+    console.log("osc1.type",osc1.type);
   };
 
   const changeFilter = (e) => {
@@ -94,11 +95,7 @@ export default function Audio() {
     let { id } = e.target;
     setFilterSettings({ ...filterSettings, type: id });
     filter.type = id;
-    console.log(filter.type)
   };
-
-  // needs to run in parent component, may need to move it out
-  // maybe it will work if I do it in child components
 
   return (
     <div className="audio">

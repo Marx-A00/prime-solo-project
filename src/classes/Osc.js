@@ -19,6 +19,8 @@ export default class Osc {
     this.easing = 0.005;
     this.osc.start();
     this.start();
+    console.log("detune",detune)
+    console.log("type",type)
   }
   start(){
     let {currentTime} = this.actx;
@@ -32,6 +34,7 @@ export default class Osc {
 
     this.gateGain.gain.cancelScheduledValues(currentTime);
     this.gateGain.gain.setTargetAtTime(0, currentTime, this.envelope.release + this.easing)
+    
     setTimeout(()=>{
         this.osc.disconnect();
     },10000);
