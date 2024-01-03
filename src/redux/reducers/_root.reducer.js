@@ -12,6 +12,7 @@ import AudioReducer1 from './AudioReducer1';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
+  AudioReducer1,
 
 
   // audio reducer should go here,

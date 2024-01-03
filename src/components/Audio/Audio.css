@@ -1,5 +1,5 @@
 body{
-    background: rg (17,80,108);
+    background: purple;
     color: rgba(0, 0, 0, 0.819);
     font-family: sans-serif;
 }
@@ -43,4 +43,10 @@ button{
     transform: translateX(-50%);
     width: 449px;
 
+}
+.red{
+    color: red;
+}
+.blue{
+    color: blue;
 }

@@ -1,40 +1,27 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-// change
-const Osc1 = ({change,settings,changeType}) => {
-  // const appState = useSelector((store) => store.AudioReducer1);
-  let { type, frequency, detune } = settings;
+const Osc1 = () => {
+  const appState = useSelector((store) => store.AudioReducer1);
+  const dispatch = useDispatch();
+  let { type, detune } = appState.osc1Settings;
+  
+  const change = (e) => {
+    let { id, value } = e.target;
+    console.log('value from app: ',value)
+    dispatch({type: "CHANGE_OSC1", payload: { id, value }});
+    console.log('detune value of appState from redux: ',appState.osc1Settings.detune);
+  }
+  const changeType = (e) => {
+    let { id} = e.target;
+    dispatch({type: "CHANGE_OSC1_TYPE", payload: { id}});
+  }
 
 
-  // const change = (e) => {
-  //   let { id, value } = e.target;
-  //   dispatch({
-  //     type: "CHANGE_OSC1",
-  //     payload: { id, value },
-  //   });
-
-    // const changeType = (e) => {
-    //   let { id } = e.target;
-    //   dispatch({
-    //     type: "CHANGE_OSC1_TYPE",
-    //     payload: { id },
-    //   });
-    // };
   
   return (
     <div className="control">
       <h2>Osc 1</h2>
-      <div className="param">
-        <h3>frequency</h3>
-        <input
-          value={frequency}
-          onChange={change}
-          max="5000"
-          type="range"
-          id="frequency"
-        />
-      </div>
 
       <div className="param">
         <h3>Detune</h3>

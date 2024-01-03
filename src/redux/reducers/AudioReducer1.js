@@ -1,50 +1,73 @@
+import Osc from "../../classes/Osc";
 import { combineReducers } from "redux";
+
+// perhaps find way to NOT rely on new Oscillator
 
 let actx = new AudioContext();
 let out = actx.destination;
 
-let osc1 = actx.createOscillator();
 let gain1 = actx.createGain();
+gain1.gain.value = 0.2;
 let filter = actx.createBiquadFilter();
 // research biquadfilter later
 
-osc1.connect(gain1);
 gain1.connect(filter);
 filter.connect(out);
 
-console.log(osc1);
+//Preliminary audio set up 👆
 
-
-const audioReducer = (
-  state = {
-    osc1Settings: {
-      frequency: osc1.frequency.value,
-      detune: osc1.detune.value,
-      type: osc1.type,
-    },
-    filterSettings: {
-      frequency: filter.frequency.value,
-      detune: filter.detune.value,
-      Q: filter.Q.value,
-      gain: filter.gain.value,
-      type: filter.type,
-    },
+const initialOsc1State = {
+  osc1Settings: {
+    detune: 0,
+    type: "sine",
   },
-  action
-) => {
-  let { id, value } = action.payload || {};
+  filterSettings: {
+    frequency: filter.frequency.value,
+    detune: filter.detune.value,
+    Q: filter.Q.value,
+    gain: filter.gain.value,
+    type: filter.type,
+  },
+  envelope:{
+    attack: 0.005,
+    decay: 0.1,
+    sustain: 0.6,
+    release: 0.1,
+  }
+};
+
+let nodes = [];
+
+const audioReducer = (state = initialOsc1State, action) => {
+  let { id, value, note, freq } = action.payload || {};
   switch (action.type) {
-    case "START_OSC":
-      osc1.start();
+    case "MAKE_OSC":
+      const newOsc = new Osc(
+        actx,
+        state.osc1Settings.type,
+        freq,
+        state.osc1Settings.detune,
+        state.envelope,
+        gain1
+      );
+      nodes.push(newOsc);
+
       return { ...state };
-    case "STOP_OSC":
-      osc1.stop();
+    case "KILL_OSC":
+      let newNodes = [];
+      nodes.forEach((node) => {
+        console.log(node);
+        if (Math.round(node.osc.frequency.value) === Math.round(freq)) {
+          node.stop();
+        } else {
+          newNodes.push(node);
+        }
+      });
+      nodes = newNodes;
       return { ...state };
     case "CHANGE_OSC1":
-      osc1[id].value = value;
       return { ...state, osc1Settings: { ...state.osc1Settings, [id]: value } };
     case "CHANGE_OSC1_TYPE":
-      osc1.type = id;
       return { ...state, osc1Settings: { ...state.osc1Settings, type: id } };
     case "CHANGE_FILTER":
       filter[id].value = value;
@@ -52,18 +75,54 @@ const audioReducer = (
         ...state,
         filterSettings: { ...state.filterSettings, [id]: value },
       };
+
     case "CHANGE_FILTER_TYPE":
       filter.type = id;
       return {
         ...state,
         filterSettings: { ...state.filterSettings, type: id },
       };
-
     default:
-      console.log("reducer error.action", action);
+      console.log("reducer error. action: ", action);
       return { ...state };
   }
 };
 
-export default combineReducers({
-});
+// const audioReducer = (state = initialOsc1State,action) => {
+
+//   // filterSettings: {
+//   //   frequency: filter.frequency.value,
+//   //   detune: filter.detune.value,
+//   //   Q: filter.Q.value,
+//   //   gain: filter.gain.value,
+//   //   type: filter.type,
+//   // },
+//   let { id, value } = action.payload || {};
+//   switch (action.type) {
+
+//     // case "CHANGE_OSC1":
+//     //   return { ...state, osc1Settings: { ...state.osc1Settings, [id]: value } };
+//     // case "CHANGE_OSC1_TYPE":
+
+//     //   return { ...state, osc1Settings: { ...state.osc1Settings, type: id } };
+//     // case "CHANGE_FILTER":
+//     //   filter[id].value = value;
+//     //   return {
+//     //     ...state,
+//     //     filterSettings: { ...state.filterSettings, [id]: value },
+//     //   };
+//     // case "CHANGE_FILTER_TYPE":
+//     //   filter.type = id;
+//     //   return {
+//     //     ...state,
+//     //     filterSettings: { ...state.filterSettings, type: id },
+//     //   };
+
+//     default:
+//       console.log("reducer error.action", action);
+//       return { ...state };
+//   }
+// };
+
+// export default combineReducers({});
+export default audioReducer;

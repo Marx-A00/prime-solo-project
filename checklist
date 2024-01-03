@@ -26,3 +26,9 @@ type: filter.type
 }
 
 within my store, and access it from anywhere within my project.
+
+the problem is that im accessing data before it is initialized
+
+
+
+
