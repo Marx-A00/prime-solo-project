@@ -29,17 +29,3 @@ const Keyboard = () => {
 };
 export default Keyboard;
 
-/**
- * TODO:
- * last thing I did was comment out everything in the store,
- * Now the plan is to make a keyboard component within this file
- * similar to one on YT video (QWERTY Hancock),
- * and then try to get MAKE_OSC working and then get the
- * reducer working one by one.
- *
- * Make sure reducer is properly set up, try to use chatGPT if needed
- * don't forget to set context and corresponding data in the
- * beginning of reducer file
- *
- * Still need to handle payload stuff in audio file as well
- */

@@ -48,8 +48,8 @@ export default function ChangeColorPresetButton() {
         Colors
       </button>
       <Dialog onClose={handleClose} open={openDialog}>
-        <DialogTitle> Demo Dialog </DialogTitle>
-        <h3 style={dialogStyle}>
+        <DialogTitle> Choose a color </DialogTitle>
+        <h3>
           <ChangeColorList />
         </h3>
       </Dialog>
