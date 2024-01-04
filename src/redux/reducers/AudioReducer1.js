@@ -28,12 +28,12 @@ const initialOsc1State = {
     gain: filter.gain.value,
     type: filter.type,
   },
-  envelope:{
+  envelope: {
     attack: 0.005,
     decay: 0.1,
     sustain: 0.6,
     release: 0.1,
-  }
+  },
 };
 
 let nodes = [];
@@ -75,54 +75,17 @@ const audioReducer = (state = initialOsc1State, action) => {
         ...state,
         filterSettings: { ...state.filterSettings, [id]: value },
       };
-
     case "CHANGE_FILTER_TYPE":
       filter.type = id;
       return {
         ...state,
         filterSettings: { ...state.filterSettings, type: id },
       };
+    case "CHANGE_ADSR":
+      return { ...state, envelope: { ...state.envelope, [id]: Number(value) } };
     default:
       console.log("reducer error. action: ", action);
       return { ...state };
   }
 };
-
-// const audioReducer = (state = initialOsc1State,action) => {
-
-//   // filterSettings: {
-//   //   frequency: filter.frequency.value,
-//   //   detune: filter.detune.value,
-//   //   Q: filter.Q.value,
-//   //   gain: filter.gain.value,
-//   //   type: filter.type,
-//   // },
-//   let { id, value } = action.payload || {};
-//   switch (action.type) {
-
-//     // case "CHANGE_OSC1":
-//     //   return { ...state, osc1Settings: { ...state.osc1Settings, [id]: value } };
-//     // case "CHANGE_OSC1_TYPE":
-
-//     //   return { ...state, osc1Settings: { ...state.osc1Settings, type: id } };
-//     // case "CHANGE_FILTER":
-//     //   filter[id].value = value;
-//     //   return {
-//     //     ...state,
-//     //     filterSettings: { ...state.filterSettings, [id]: value },
-//     //   };
-//     // case "CHANGE_FILTER_TYPE":
-//     //   filter.type = id;
-//     //   return {
-//     //     ...state,
-//     //     filterSettings: { ...state.filterSettings, type: id },
-//     //   };
-
-//     default:
-//       console.log("reducer error.action", action);
-//       return { ...state };
-//   }
-// };
-
-// export default combineReducers({});
 export default audioReducer;

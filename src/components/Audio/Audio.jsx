@@ -19,7 +19,7 @@ import Keyboard from "../Keyboard/Keyboard";
 
 import QwertyHancock from "qwerty-hancock";
 import ChangeColorPresetButton from "../ChangeColorPresetButton/ChangeColorPresetButton";
-
+import ADSR from "../ADSR/ADSR";
 
 export default function Audio() {
   const appState = useSelector((store) => store.AudioReducer1);
@@ -65,8 +65,10 @@ export default function Audio() {
     <div className="audio">
       {/* <ChangeColorPresetButton /> */}
       <Osc1 />
+      <ADSR />
       <Filter />
       <Keyboard />
     </div>
   );
+
 }
