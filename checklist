@@ -1,17 +1,15 @@
 - make dev route to bypass login creds
 
-Study header:
-go back and watch first videos
-for science on the shits
+- Study header:
+  go back and watch first videos
+  for science on the shits
 
 - study biquadfilter shit
 
-12/18 Spike:
+## ~~12/18 Spike~~
 
-need to create an object that has structure:
-
-{
-osc1Settings:{
+~~need to create an object that hasstructure:
+`{osc1Settings:{
 frequency: osc1val
 detune: detuneval
 type: osc1type
@@ -23,12 +21,42 @@ Q: filter.q.val
 gain: filter.gain.val
 type: filter.type
 }
-}
-
+}`
 within my store, and access it from anywhere within my project.
+the problem is that im accessing data before it is initialized~~
 
-the problem is that im accessing data before it is initialized
+# 1/3
 
+## Base mode:
 
+-implement CRUD and Styling --> Database
+-Authentication of users
+-moving Audio components into Authenticated space
+-Deploying app to ensure quality
 
+-components as windows
 
+---
+
+## Stretch:
+
+- log input
+
+- Start Visualization
+
+- Start MIDI
+
+> Quotes Area
+> for quotes I guess
+
+```html
+<p>This is a code block</p>
+```
+
+### JS
+
+```javascript
+for (const cheese of cheeseBowl) {
+  console.log(cheese);
+}
+```
