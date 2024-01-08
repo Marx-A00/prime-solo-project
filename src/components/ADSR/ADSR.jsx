@@ -5,7 +5,9 @@ const ADSR = () => {
   const appState = useSelector((store) => store.AudioReducer1);
   let { attack, decay, sustain, release } = appState.envelope;
   const dispatch = useDispatch();
-
+/**
+ * TODO showcase better comments
+ */
   const change = (e) => {
     let { id, value } = e.target;
     dispatch({ type: "CHANGE_ADSR", payload: { id, value } });

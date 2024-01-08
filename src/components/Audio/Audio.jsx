@@ -1,11 +1,13 @@
 import "./Audio.css";
 import Osc1 from "../Osc1/Osc1";
 import Filter from "../Filter/Filter";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import * as React from "react";
 import Keyboard from "../Keyboard/Keyboard";
 import ChangeColorPresetButton from "../ChangeColorPresetButton/ChangeColorPresetButton";
 import ADSR from "../ADSR/ADSR";
+import Draggable from "react-draggable";
+import ChangeKeyboardColors from "../ChangeKeyboardColorsButton/ChangeKeyboardColorsButton";
 
 export default function Audio() {
   const appState = useSelector((store) => store.AudioReducer1);
@@ -21,11 +23,34 @@ export default function Audio() {
   };
 
   return (
+    /**
+     * TODO:
+     * Make windows not draggable by param bars
+     */
+    
     <div className="audio">
       <ChangeColorPresetButton />
-      <Osc1 />
-      <ADSR />
-      <Filter />
+
+      <ChangeKeyboardColors />
+
+      <Draggable>
+        <div className="drag">
+          <Osc1 />
+        </div>
+      </Draggable>
+
+      <Draggable>
+        <div className="drag">
+          <ADSR />
+        </div>
+      </Draggable>
+
+      <Draggable>
+        <div className="drag">
+          <Filter />
+        </div>
+      </Draggable>
+
       <Keyboard />
     </div>
   );

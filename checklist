@@ -32,11 +32,15 @@ the problem is that im accessing data before it is initialized~~
 - Authentication of users
 - moving Audio components into Authenticated space
 - Deploying app to ensure quality
-- components as windows
+
 
 ## Stretch:
 
 - log input
+
+### Styling components as windows:
+- make bars not draggable 
+- make "keyboard" element for keyboard, and make keyboard only draggable by top part "header"
 
 - Start Visualization
 
