@@ -7,6 +7,7 @@ import { useState } from "react";
 
 export default function ChangeKeyboardColorsInput() {
   const [style, setStyle] = useState("red");
+  
   /**
    * handle backgroundColorOnClick or something that changes
    * the background color when the listItemButton is clicked
@@ -20,7 +21,7 @@ export default function ChangeKeyboardColorsInput() {
   /**
    * TODO:
    * Make input for changing keyboard colors actually change color of keyboard
-   * TODO:
+   * FIXME:
    * Make user able to type input without activitating piano keys
    * probably just add disabled class to keyboard
    */
@@ -40,3 +41,6 @@ export default function ChangeKeyboardColorsInput() {
     </Box>
   );
 }
+
+
+

@@ -26,6 +26,7 @@ const Osc1 = () => {
     <div>
       <div id="Osc1" className="control">
         <h2>Osc 1</h2>
+  
 
         <div className="param">
           <h3>Detune</h3>

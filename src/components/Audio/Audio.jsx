@@ -10,7 +10,6 @@ import Draggable from "react-draggable";
 import ChangeKeyboardColors from "../ChangeKeyboardColorsButton/ChangeKeyboardColorsButton";
 
 export default function Audio() {
-  const appState = useSelector((store) => store.AudioReducer1);
 
   const changeStyle = () => {
     if (style !== "red") {
@@ -24,8 +23,12 @@ export default function Audio() {
 
   return (
     /**
-     * TODO:
+     * FIXME:
      * Make windows not draggable by param bars
+     * FIXME:
+     * Make control divs only draggable by touching the exact div
+     *
+     * 
      */
     
     <div className="audio">
