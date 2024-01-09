@@ -27,7 +27,8 @@ export default function Audio() {
      * Make windows not draggable by param bars
      * FIXME:
      * Make control divs only draggable by touching the exact div
-     *
+     * TODO:
+     * Make Windows Resizable
      * 
      */
     

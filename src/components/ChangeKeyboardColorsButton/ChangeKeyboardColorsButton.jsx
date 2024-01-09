@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import ChangeKeyboardColorsInput from "../Audio/ChangeKeyboardColorsInput/ChangeKeyboardColorsInput";
+import ChangeKeyboardColorsInput from "../ChangeKeyboardColorsInput/ChangeKeyboardColorsInput";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 
