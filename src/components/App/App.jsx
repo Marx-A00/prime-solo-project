@@ -39,7 +39,7 @@ function App() {
           <Audio />
         </Route>
         <Route exact path="/audioVisualizer">
-          <AudioVisualizer />
+          {/* <AudioVisualizer /> */}
         </Route>
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}

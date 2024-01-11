@@ -4,6 +4,10 @@ import { put,takeLatest } from "redux-saga/effects";
 function* fetchAudioDetails(action){
     try{
         const response = yield axios.get(`/api/user/${action.id}}`)
+        /**
+         * TODO: write server get route 
+         */
+        console.log(response);
 
         yield put({
             /**

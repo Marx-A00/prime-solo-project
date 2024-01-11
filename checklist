@@ -35,6 +35,30 @@ the problem is that im accessing data before it is initialized~~
 
 
 
+### direction - 1/11:
+- test POST and GET route
+- console.log first, then proceed with the rest
+- deploy on Heroku
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Stretch:
 
 - log input

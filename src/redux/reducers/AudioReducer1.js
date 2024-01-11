@@ -87,6 +87,9 @@ const audioReducer = (state = initialOsc1State, action) => {
       };
     case "CHANGE_ADSR":
       return { ...state, envelope: { ...state.envelope, [id]: Number(value) } };
+    case "SET_AUDIO_DETAILS":
+      
+
     default:
       console.log("reducer error. action: ", action);
       return { ...state };

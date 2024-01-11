@@ -9,10 +9,18 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
+// Send back user object from the session (previously queried from the database)
 router.get('/', rejectUnauthenticated, (req, res) => {
-  // Send back user object from the session (previously queried from the database)
+  /**
+   * TODO:
+   * Figure out how to make GET request in postman using Headers
+   */
   res.send(req.user);
+  // handled by passport I believe, may need to verify
 });
+
+
+
 
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
