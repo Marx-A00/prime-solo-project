@@ -20,6 +20,21 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 
+router.post("/:id", (req, res) => {
+  console.log('req:', req);
+  const idOfUser = req.params;
+  const dataFromUser = req.body;
+  console.log(idOfUser);
+  console.log(dataFromUser);
+  const insertDetailsQuery = `
+  INSERT INTO "user"
+  ("presets","color_Scheme")
+  VALUES
+  ($1,$2)
+  `;
+});
+
+
 
 
 // Handles POST request with new user data

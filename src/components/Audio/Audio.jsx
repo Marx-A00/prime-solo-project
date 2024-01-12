@@ -10,23 +10,27 @@ import Draggable from "react-draggable";
 import ChangeKeyboardColors from "../ChangeKeyboardColorsButton/ChangeKeyboardColorsButton";
 
 export default function Audio() {
-// useEffect here?
+  // useEffect here?
 
   const dispatch = useDispatch();
 
-  dispatch({
-    type: 'SAGA/FETCH_USER_DETAILS',
-    payload: id,
-  })
-  /**
-   * TODO: 
-   * How will you send the ID?
-   */
+  const user = useSelector((store) => store.user);
 
+  // dispatch({
+  //   type: "SAGA/FETCH_USER_DETAILS",
+  //   payload: user.id,
+  // });
 
-  
-
-
+  const handlePresetDetails = () => {
+    console.log("in handle presets");
+    dispatch({
+      type: "SAGA/SET_USER_AUDIO_DETAILS",
+      payload: {
+        id: user.id,
+        data: document.body.style.backgroundColor,
+      },
+    });
+  };
 
   const changeStyle = () => {
     if (style !== "red") {
@@ -39,8 +43,6 @@ export default function Audio() {
     }
   };
 
-  
-
   return (
     /**
      * FIXME:
@@ -49,16 +51,20 @@ export default function Audio() {
      * Make control divs only draggable by touching the exact div
      * TODO:
      * Make Windows Resizable
-     * 
+     *
      * FIXME:
-     * google this error: 
+     * google this error:
      * findDOMNode was passed an instance of Draggable which is inside StrictMode. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-find-node
-     * 
-     * 
+     *
+     *
      */
-    
+
     <div className="audio">
+      <button onClick={handlePresetDetails}>Save Current Presets</button>
       <ChangeColorPresetButton />
+      <h1>btw this is you: {user.username}</h1>
+      <h1>this might also be your presets: {user.presets}</h1>
+      <h1> aaand this might even be your colorSchemes: {user.color_Scheme}</h1>
 
       <ChangeKeyboardColors />
 

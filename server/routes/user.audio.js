@@ -7,6 +7,7 @@ const router = express.Router();
  */
 
 router.get("/:id", (req, res) => {
+  console.log('req:', req);
   /**
    * TODO:
    * Make sure ID is consistent in both reducer and
@@ -36,6 +37,7 @@ SELECT * FROM "user"
  */
 
 router.post("/:id", (req, res) => {
+  console.log('req:', req);
   const idOfUser = req.params;
   const dataFromUser = req.body;
   console.log(idOfUser);

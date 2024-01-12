@@ -9,6 +9,9 @@ function UserPage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
+      <p>Your presets are: </p>
+      <p>Your colorSchemes are: </p>
+      {/* TODO: add presets and color schemes from reducer */}
       <LogOutButton className="btn" />
     </div>
   );
