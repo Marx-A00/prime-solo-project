@@ -15,6 +15,7 @@ export default function Audio() {
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
+  const appState = useSelector((store) => store.AudioReducer1);
 
   // dispatch({
   //   type: "SAGA/FETCH_USER_DETAILS",
@@ -22,12 +23,11 @@ export default function Audio() {
   // });
 
   const handlePresetDetails = () => {
-    console.log("in handle presets");
     dispatch({
       type: "SAGA/SET_USER_AUDIO_DETAILS",
       payload: {
         id: user.id,
-        data: document.body.style.backgroundColor,
+        data: appState
       },
     });
   };

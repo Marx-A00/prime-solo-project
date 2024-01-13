@@ -11,28 +11,25 @@ const router = express.Router();
 // Handles Ajax request for user information if user is authenticated
 // Send back user object from the session (previously queried from the database)
 router.get('/', rejectUnauthenticated, (req, res) => {
-  /**
-   * TODO:
-   * Figure out how to make GET request in postman using Headers
-   */
   res.send(req.user);
   // handled by passport I believe, may need to verify
 });
 
 
-router.post("/:id", (req, res) => {
-  console.log('req:', req);
-  const idOfUser = req.params;
-  const dataFromUser = req.body;
-  console.log(idOfUser);
-  console.log(dataFromUser);
-  const insertDetailsQuery = `
-  INSERT INTO "user"
-  ("presets","color_Scheme")
-  VALUES
-  ($1,$2)
-  `;
-});
+
+
+// router.post("/:id", (req, res) => {
+//   const idOfUser = req.params;
+//   const dataFromUser = req.body;
+//   console.log('ID/req.params',idOfUser);
+//   console.log('req.body',dataFromUser);
+//   const insertDetailsQuery = `
+//   INSERT INTO "user"
+//   ("presets","color_Scheme")
+//   VALUES
+//   ($1,$2)
+//   `;
+// });
 
 
 

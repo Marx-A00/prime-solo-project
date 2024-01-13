@@ -25,14 +25,14 @@ function* fetchUser() {
 }
 
 function* setUserAudioDetails(action) {
+  console.log('action.payload:', action.payload)
   const userid = action.payload.id;
   const userData = action.payload.data;
-  // Now sending just raw data, NOT in an object, may be good to change
   try {
     const response = yield axios({
       method: "POST",
-      url: `/api/user/${userid}`,
-      data: userData,
+      url: `/api/presets`,
+      data: action.payload,
     });
 
     yield fetchUser();
