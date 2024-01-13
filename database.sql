@@ -16,7 +16,7 @@ CREATE TABLE "presets"(
     "osc1_type" VARCHAR(10),
     "filter_frequency" INTEGER,
     "filter_detune" INTEGER,
-    "filter_Q" INTEGER,
+    "filter_Q" FLOAT,
     "filter_gain" INTEGER,
     "filter_type" VARCHAR(20),
     "envelope_attack" FLOAT,

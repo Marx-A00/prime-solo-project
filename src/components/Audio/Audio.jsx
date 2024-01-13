@@ -27,7 +27,7 @@ export default function Audio() {
       type: "SAGA/SET_USER_AUDIO_DETAILS",
       payload: {
         id: user.id,
-        data: appState
+        data: appState,
       },
     });
   };
@@ -86,7 +86,12 @@ export default function Audio() {
         </div>
       </Draggable>
 
-      <Keyboard />
+      <Draggable>
+      <div className="drag">
+          <Keyboard />
+        </div>
+   
+      </Draggable>
     </div>
   );
 }

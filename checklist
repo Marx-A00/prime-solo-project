@@ -37,8 +37,15 @@ the problem is that im accessing data before it is initialized~~
 
 ### direction - 1/11:
 - test POST and GET route
-- console.log first, then proceed with the rest
 - deploy on Heroku
+
+
+### direction -1/12:
+- get presets, display on DOM
+- post route for colors
+- get colors, display on dom
+- actually get colors changing on keyboard
+- 
 
 
 

@@ -22,10 +22,11 @@ const Keyboard = () => {
   }, []);
 
   return (
-    <div className="keyboard">
-      <div id="keyboard"></div>
+    <div className="keyboardBox">
+      <div className="keyboard">
+        <div id="keyboard"></div>
+      </div>
     </div>
   );
 };
 export default Keyboard;
-
