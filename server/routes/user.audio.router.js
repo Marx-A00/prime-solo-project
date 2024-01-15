@@ -1,20 +1,30 @@
-  const express = require("express");
+const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
 // currently only posts presets and updates
 // users_presets
 
+// // have to figure out authorized user
+// router.get("/", (req, res) => {
+//   console.log("req.body:", req.body);
+//   const queryText = `SELECT * FROM "user"
+//   WHERE "presetUserOwnerId" = ${req.body.id};`;
+
+//   pool
+//     .query(queryText)
+//     .then((result) => {
+//       console.log("result.rows:", result.rows);
+
+//       res.send(result.rows);
+//     })
+//     .catch((error) => {
+//       console.log(`Error on query ${error}`);
+//       res.sendStatus(500);
+//     });
+// });
 
 
-// have to figure out authorized user 
-router.get("/",(req,res)=>{
-  console.log('req.body:', req.body);
-  // const queryText = `SELECT * FROM "users_presets"
-  // WHERE "presetUserOwnerId" = ${req.body.id};`
-
-
-})
 router.post("/", async (req, res) => {
   let connection;
 
@@ -22,7 +32,7 @@ router.post("/", async (req, res) => {
     const audioDataFromUser = req.body.data;
     console.log(audioDataFromUser);
     const idOfUser = req.body.id;
-    console.log('idOfUser:', idOfUser);
+    console.log("idOfUser:", idOfUser);
 
     connection = await pool.connect();
 

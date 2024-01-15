@@ -23,12 +23,8 @@ const Keyboard = () => {
   }, []);
 
   return (
-    <div className="keyboardBox">
-
-
-      <div className="keyboard">
-        <div id="keyboard"></div>
-      </div>
+    <div className="keyboard">
+      <div id="keyboard"></div>
     </div>
   );
 };

@@ -14,13 +14,13 @@ export default function Audio() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const appState = useSelector((store) => store.AudioReducer1);
-  
+
   useEffect(() => {
     dispatch({
       type: "SAGA/FETCH_USER_DETAILS",
-      payload: {id: user.id}
+      payload: { id: user.id },
     });
-  },[dispatch]);
+  }, [dispatch]);
 
   // const getUserDetails = () =>{
   //   dispatch({
@@ -94,12 +94,19 @@ export default function Audio() {
           <Filter />
         </div>
       </Draggable>
-        <Draggable>
+      <Draggable>
+        <div className="keyboardBox">
+          <div className="handle">
+
+          </div>
+          <button>hi</button>
+          <button>hi</button>
 
         <div className="drag">
           <Keyboard />
         </div>
-        </Draggable>
+        </div>
+      </Draggable>
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import axios from "axios";
 import { put, takeLatest } from "redux-saga/effects";
+import axios from "axios";
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
@@ -26,12 +26,19 @@ function* fetchUser() {
 // responsible for getting Audio details : Oscillator details and color details
 function* fetchUserAudioDetails(action){
   console.log('action.payload:', action.payload)
+  try {
+    const response = yield axios({
+      method: "GET",
+      url: `/api/users_presets`,
+      data: {id: action.payload}
+    })
+    console.log(response);
+    
+  } catch (error) {
+    
+  }
 
-  const response = yield axios({
-    method: "GET",
-    url: `/api/user`,
-    data: action.payload
-  })
+
 
 
 }
