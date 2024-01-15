@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const userAudioDetailsRouter = require('./routes/user.audio.router');
 const oscDetailsRouter = require('./routes/user.osc.router');
+const userColorDetailsRouter = require('./routes/user.colors.router')
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,6 +27,8 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/presets', userAudioDetailsRouter);
 app.use('/api/users_presets',oscDetailsRouter);
+app.use('/api/color_schemes',userColorDetailsRouter);
+
 
 // Serve static files
 app.use(express.static('build'));

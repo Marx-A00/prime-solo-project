@@ -39,10 +39,7 @@ const initialOsc1State = {
 let nodes = [];
 
 const audioReducer = (state = initialOsc1State, action) => {
-  /**
-   * TODO:
-   * Create an action that stores all of the data and goes to SAGA
-   */
+
   let { id, value, note, freq } = action.payload || {};
   switch (action.type) {
     case "MAKE_OSC":

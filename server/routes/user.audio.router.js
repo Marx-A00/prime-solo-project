@@ -24,6 +24,27 @@ const router = express.Router();
 //     });
 // });
 
+router.get("/", (req, res) => {
+  const userid = req.user.id;
+  const queryText = `
+  SELECT p.*
+FROM presets p
+JOIN users_presets up ON p.id = up.preset_id
+WHERE up."presetUserOwnerId" = ${userid};	
+
+  `;
+  pool
+    .query(queryText)
+    .then((result) => {
+      console.log("result.rows:", result.rows);
+
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log(`Error on query ${error}`);
+      res.sendStatus(500);
+    });
+});
 
 router.post("/", async (req, res) => {
   let connection;
@@ -92,6 +113,45 @@ router.post("/", async (req, res) => {
     connection.release();
     res.sendStatus(500);
   }
+});
+router.delete("/:id", async (req, res) => {
+  let connection;
+  try {
+    const idOfPreset = req.params.id;
+
+    connection = await pool.connect();
+
+    connection.query("BEGIN;");
+    
+
+    const sqlQuery = `
+    DELETE FROM "presets"
+      WHERE "id" = ${idOfPreset};
+    `;
+
+
+    
+
+    const presetsResponse = await connection.query(sqlQuery);
+
+    const usersPresetsQuery = `
+    DELETE FROM "users_presets"
+    WHERE "preset_id" = ${idOfPreset};
+    `;
+    await connection.query(usersPresetsQuery);
+
+    connection.query("COMMIT;");
+    connection.release();
+    res.sendStatus(201);
+  } catch (error) {
+    console.log("error in post route", error);
+    connection.query("ROLLBACK;");
+    connection.release();
+    res.sendStatus(500);
+  }
+
+  // will have to delete presets from users_presets first, then delete actual
+  // presets
 });
 
 module.exports = router;

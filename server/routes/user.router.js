@@ -17,23 +17,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 
 
-
-// router.post("/:id", (req, res) => {
-//   const idOfUser = req.params;
-//   const dataFromUser = req.body;
-//   console.log('ID/req.params',idOfUser);
-//   console.log('req.body',dataFromUser);
-//   const insertDetailsQuery = `
-//   INSERT INTO "user"
-//   ("presets","color_Scheme")
-//   VALUES
-//   ($1,$2)
-//   `;
-// });
-
-
-
-
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted

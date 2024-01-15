@@ -8,27 +8,25 @@ import ChangeColorPresetButton from "../ChangeColorPresetButton/ChangeColorPrese
 import ADSR from "../ADSR/ADSR";
 import Draggable from "react-draggable";
 import ChangeKeyboardColors from "../ChangeKeyboardColorsButton/ChangeKeyboardColorsButton";
+import PresetsList from "../PresetsList/PresetsList";
+import ColorSchemeList from "../ColorSchemeList/ColorSchemeList";
 import { useEffect } from "react";
 
 export default function Audio() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const appState = useSelector((store) => store.AudioReducer1);
+  const userDetails = useSelector((store) => store.userAudioDetailsReducer);
+  console.log("userDetails", userDetails);
 
   useEffect(() => {
     dispatch({
       type: "SAGA/FETCH_USER_DETAILS",
-      payload: { id: user.id },
     });
-  }, [dispatch]);
-
-  // const getUserDetails = () =>{
-  //   dispatch({
-  //     type: "SAGA/FETCH_USER_DETAILS",
-  //     payload: {id: user.id}
-  //   });
-
-  // }
+    dispatch({
+      type: "SAGA/FETCH_USER_COLOR_DETAILS",
+    });
+  }, []);
 
   // Setter for User audio Details (Osc)
   const handlePresetDetails = () => {
@@ -72,8 +70,10 @@ export default function Audio() {
       <button onClick={handlePresetDetails}>Save Current Presets</button>
       <ChangeColorPresetButton />
       <h1>btw this is you: {user.username}</h1>
-      <h1>this might also be your presets: {user.presets}</h1>
+      {/* <h1>this might also be your presets: {userDetails}</h1> */}
+      <PresetsList />
       <h1> aaand this might even be your colorSchemes: {user.color_Scheme}</h1>
+      <ColorSchemeList />
 
       <ChangeKeyboardColors />
 
@@ -94,17 +94,13 @@ export default function Audio() {
           <Filter />
         </div>
       </Draggable>
-      <Draggable>
+
+      <Draggable handle=".handle">
         <div className="keyboardBox">
-          <div className="handle">
-
+          <div className="handle">Drag here</div>
+          <div>
+            <Keyboard />
           </div>
-          <button>hi</button>
-          <button>hi</button>
-
-        <div className="drag">
-          <Keyboard />
-        </div>
         </div>
       </Draggable>
     </div>

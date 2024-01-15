@@ -24,29 +24,23 @@ function* fetchUser() {
   }
 }
 // responsible for getting Audio details : Oscillator details and color details
-function* fetchUserAudioDetails(action){
-  console.log('action.payload:', action.payload)
+function* fetchUserAudioDetails() {
   try {
     const response = yield axios({
       method: "GET",
-      url: `/api/users_presets`,
-      data: {id: action.payload}
-    })
-    console.log(response);
-    
+      url: `/api/presets`,
+    });
+
+    yield put({
+      type: "SET_USER_DETAILS",
+      payload: response.data,
+    });
   } catch (error) {
-    
+    console.log("error in fetchUserAudioDetails:", error);
   }
-
-
-
-
 }
 
 function* setUserAudioDetails(action) {
-  console.log('action.payload:', action.payload)
-  const userid = action.payload.id;
-  const userData = action.payload.data;
   try {
     const response = yield axios({
       method: "POST",
@@ -54,17 +48,66 @@ function* setUserAudioDetails(action) {
       data: action.payload,
     });
 
-    yield fetchUser();
+    yield fetchUserAudioDetails();
   } catch (error) {
     console.log("error when posting user Audio Data", error);
   }
 }
 
+function* setUserColorDetails(action) {
+  console.log("action.payload:", action.payload);
+  try {
+    const response = yield axios({
+      method: "POST",
+      url: "/api/color_schemes",
+      data: action.payload,
+    });
+    yield fetchUserColorDetails();
+  } catch (error) {
+    console.log("error:", error);
+  }
+}
+
+function* fetchUserColorDetails() {
+  try {
+    const response = yield axios({
+      method: "GET",
+      url: "/api/color_schemes",
+    });
+
+    yield put({
+      type: "SET_USER_COLOR_DETAILS",
+      payload: response.data,
+    });
+  } catch (error) {
+    console.log("error when posting user color Data", error);
+  }
+}
+function* deleteUserPreset(action) {
+  console.log('action.payload', action.payload);
+  const idOfPreset = action.payload;
+  try {
+    const response = yield axios({
+      method: 'DELETE',
+      url: `/api/presets/${idOfPreset}`,
+    });
+    yield fetchUserAudioDetails();
+  } catch (error) {
+    console.log("error in delete:", error);
+  }
+}
+
+function* deleteUserColorSchemes(action){
+  console.log('action.payload', action.payload);
+}
+
 function* userSaga() {
   yield takeLatest("FETCH_USER", fetchUser);
   yield takeLatest("SAGA/FETCH_USER_DETAILS", fetchUserAudioDetails);
-
   yield takeLatest("SAGA/SET_USER_AUDIO_DETAILS", setUserAudioDetails);
+  yield takeLatest("SAGA/SET_USER_COLOR_DETAILS", setUserColorDetails);
+  yield takeLatest("SAGA/FETCH_USER_COLOR_DETAILS", fetchUserColorDetails);
+  yield takeLatest("SAGA/DELETE_PRESET", deleteUserPreset);
 }
 
 export default userSaga;
