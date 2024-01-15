@@ -8,20 +8,29 @@ import ChangeColorPresetButton from "../ChangeColorPresetButton/ChangeColorPrese
 import ADSR from "../ADSR/ADSR";
 import Draggable from "react-draggable";
 import ChangeKeyboardColors from "../ChangeKeyboardColorsButton/ChangeKeyboardColorsButton";
+import { useEffect } from "react";
 
 export default function Audio() {
-  // useEffect here?
-
   const dispatch = useDispatch();
-
   const user = useSelector((store) => store.user);
   const appState = useSelector((store) => store.AudioReducer1);
+  
+  useEffect(() => {
+    dispatch({
+      type: "SAGA/FETCH_USER_DETAILS",
+      payload: {id: user.id}
+    });
+  },[dispatch]);
 
-  // dispatch({
-  //   type: "SAGA/FETCH_USER_DETAILS",
-  //   payload: user.id,
-  // });
+  // const getUserDetails = () =>{
+  //   dispatch({
+  //     type: "SAGA/FETCH_USER_DETAILS",
+  //     payload: {id: user.id}
+  //   });
 
+  // }
+
+  // Setter for User audio Details (Osc)
   const handlePresetDetails = () => {
     dispatch({
       type: "SAGA/SET_USER_AUDIO_DETAILS",
@@ -85,13 +94,12 @@ export default function Audio() {
           <Filter />
         </div>
       </Draggable>
+        <Draggable>
 
-      <Draggable>
-      <div className="drag">
+        <div className="drag">
           <Keyboard />
         </div>
-   
-      </Draggable>
+        </Draggable>
     </div>
   );
 }

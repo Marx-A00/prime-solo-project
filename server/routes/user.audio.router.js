@@ -1,9 +1,20 @@
-const express = require("express");
+  const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
 // currently only posts presets and updates
 // users_presets
+
+
+
+// have to figure out authorized user 
+router.get("/",(req,res)=>{
+  console.log('req.body:', req.body);
+  // const queryText = `SELECT * FROM "users_presets"
+  // WHERE "presetUserOwnerId" = ${req.body.id};`
+
+
+})
 router.post("/", async (req, res) => {
   let connection;
 
@@ -11,6 +22,7 @@ router.post("/", async (req, res) => {
     const audioDataFromUser = req.body.data;
     console.log(audioDataFromUser);
     const idOfUser = req.body.id;
+    console.log('idOfUser:', idOfUser);
 
     connection = await pool.connect();
 

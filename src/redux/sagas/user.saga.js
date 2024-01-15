@@ -23,6 +23,18 @@ function* fetchUser() {
     console.log("User get request failed", error);
   }
 }
+// responsible for getting Audio details : Oscillator details and color details
+function* fetchUserAudioDetails(action){
+  console.log('action.payload:', action.payload)
+
+  const response = yield axios({
+    method: "GET",
+    url: `/api/user`,
+    data: action.payload
+  })
+
+
+}
 
 function* setUserAudioDetails(action) {
   console.log('action.payload:', action.payload)
@@ -43,6 +55,8 @@ function* setUserAudioDetails(action) {
 
 function* userSaga() {
   yield takeLatest("FETCH_USER", fetchUser);
+  yield takeLatest("SAGA/FETCH_USER_DETAILS", fetchUserAudioDetails);
+
   yield takeLatest("SAGA/SET_USER_AUDIO_DETAILS", setUserAudioDetails);
 }
 

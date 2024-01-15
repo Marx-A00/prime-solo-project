@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import QwertyHancock from "qwerty-hancock";
 import { useEffect } from "react";
+import Draggable from "react-draggable";
 const Keyboard = () => {
   const dispatch = useDispatch();
 
@@ -23,6 +24,8 @@ const Keyboard = () => {
 
   return (
     <div className="keyboardBox">
+
+
       <div className="keyboard">
         <div id="keyboard"></div>
       </div>

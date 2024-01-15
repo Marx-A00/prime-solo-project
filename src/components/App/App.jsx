@@ -4,6 +4,7 @@ import {
   Redirect,
   Route,
   Switch,
+  useParams,
 } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +25,7 @@ import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
+  // let { userId } = useParams();
 
   const user = useSelector((store) => store.user);
 
@@ -35,12 +37,6 @@ function App() {
     <Router>
       <div>
         <Nav />
-        <Route exact path="/audio">
-          <Audio />
-        </Route>
-        <Route exact path="/audioVisualizer">
-          {/* <AudioVisualizer /> */}
-        </Route>
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -61,9 +57,9 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/user"
+            path="/audio"
           >
-            <UserPage />
+            <Audio />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -78,7 +74,7 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/audio" />
             ) : (
               // Otherwise, show the login page
               <LoginPage />
@@ -89,7 +85,7 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/audio" />
             ) : (
               // Otherwise, show the registration page
               <RegisterPage />
@@ -99,8 +95,8 @@ function App() {
           <Route exact path="/home">
             {user.id ? (
               // If the user is already logged in,
-              // redirect them to the /user page
-              <Redirect to="/user" />
+              // redirect them to the /audio page
+              <Redirect to="/audio" />
             ) : (
               // Otherwise, show the Landing page
               <LandingPage />
