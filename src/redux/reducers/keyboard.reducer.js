@@ -1,5 +1,5 @@
 import QwertyHancock from "qwerty-hancock";
-const keyboardReducer = (state = initialKeyboardState, action) => {
+const keyboardReducer = (state = {}, action) => {
   switch (action.type) {
     case "MAKE_NEW_KEYBOARD_COLORS":
       const colorfulKeys = new QwertyHancock({

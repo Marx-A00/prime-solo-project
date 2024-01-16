@@ -35,10 +35,20 @@ const Keyboard = () => {
     }
   }, [isKeyboardListenerActive,dispatch]);
 
+
+  const handleKeyboardChange = () =>{
+    dispatch({
+      type: "MAKE_NEW_KEYBOARD_COLORS"
+    })
+  }
+
   return (
+    <>
+    <button onClick={handleKeyboardChange}>change</button>
     <div className="keyboard">
       <div id="keyboard"></div>
     </div>
+    </>
   );
 };
 export default Keyboard;
