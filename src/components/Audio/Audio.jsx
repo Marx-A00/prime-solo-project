@@ -16,6 +16,8 @@ export default function Audio() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const appState = useSelector((store) => store.AudioReducer1);
+  const isKeyboardListenerActive = appState.isKeyboardListenerActive;
+  console.log("isKeyboardListenerActive", isKeyboardListenerActive);
   const userDetails = useSelector((store) => store.userAudioDetailsReducer);
   console.log("userDetails", userDetails);
 
@@ -69,17 +71,16 @@ export default function Audio() {
     <div className="audio">
       <button onClick={handlePresetDetails}>Save Current Presets</button>
       <ChangeColorPresetButton />
-      <h1>btw this is you: {user.username}</h1>
-      {/* <h1>this might also be your presets: {userDetails}</h1> */}
-      <PresetsList />
-      <h1> aaand this might even be your colorSchemes: {user.color_Scheme}</h1>
-      <ColorSchemeList />
+    
+ 
 
       <ChangeKeyboardColors />
 
       <Draggable>
         <div className="drag">
-          <Osc1 />
+          <div className="rectangle">
+            <Osc1 />
+          </div>
         </div>
       </Draggable>
 

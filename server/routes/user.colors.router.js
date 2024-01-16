@@ -81,4 +81,33 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  let connection;
+  try {
+    const idOfColorScheme = req.params.id;
+    connection = await pool.connect();
+
+    connection.query("BEGIN;");
+
+    const sqlQuery = `
+    DELETE FROM "color_schemes"
+    WHERE "id" = ${idOfColorScheme};
+    `;
+    const colorsResponse = await connection.query(sqlQuery);
+
+    const usersColorSchemesQuery = `
+    DELETE FROM "users_color_schemes"
+    WHERE "colorSchemeId" = ${idOfColorScheme};
+    `;
+    connection.query("COMMIT;");
+    connection.release();
+    res.sendStatus(201);
+  } catch (error) {
+    console.log("error in post route", error);
+    connection.query("ROLLBACK;");
+    connection.release();
+    res.sendStatus(500);
+  }
+});
+
 module.exports = router;

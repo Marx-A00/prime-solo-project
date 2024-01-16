@@ -4,6 +4,7 @@ import ChangeColorList from "../ChangeColorList/ChangeColorList";
 import * as React from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
+import PresetsList from "../PresetsList/PresetsList";
 /**
  * Use material UI for this
  * Material UI components needed:
@@ -21,13 +22,23 @@ export default function ChangeColorPresetButton() {
   };
 
   const dialogStyle = {
-    padding: "20px",
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "auto", 
+    overflow: "auto", 
+    backgroundcolor: "white", 
+    padding: "20px", 
+  
+
   };
   const buttonStyle = {
     width: "10rem",
     fontsize: "1.5rem",
     height: "2rem",
     padding: "5px",
+    overflow: "auto",
     borderRadius: "10px",
     backgroundColor: "green",
     color: "White",
@@ -45,14 +56,12 @@ export default function ChangeColorPresetButton() {
   return (
     <>
       <button style={buttonStyle} onClick={openDialogBox}>
-        Colors
+        Show Presets
       </button>
-      <Dialog onClose={handleClose} open={openDialog}>
-        <DialogTitle> Choose a color </DialogTitle>
-        <h3>
-          <ChangeColorList />
-        </h3>
-      </Dialog>
+        <Dialog style={dialogStyle} onClose={handleClose} open={openDialog}>
+          <DialogTitle> User Preset Details </DialogTitle>
+          <PresetsList />
+        </Dialog>
     </>
   );
 }

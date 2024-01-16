@@ -84,11 +84,11 @@ function* fetchUserColorDetails() {
   }
 }
 function* deleteUserPreset(action) {
-  console.log('action.payload', action.payload);
+  console.log("action.payload", action.payload);
   const idOfPreset = action.payload;
   try {
     const response = yield axios({
-      method: 'DELETE',
+      method: "DELETE",
       url: `/api/presets/${idOfPreset}`,
     });
     yield fetchUserAudioDetails();
@@ -97,8 +97,18 @@ function* deleteUserPreset(action) {
   }
 }
 
-function* deleteUserColorSchemes(action){
-  console.log('action.payload', action.payload);
+function* deleteUserColorScheme(action) {
+  console.log("action.payload", action.payload);
+  const idOfColorScheme = action.payload;
+  try {
+    const response = yield axios({
+      method: "DELETE",
+      url: `/api/color_schemes/${idOfColorScheme}`,
+    });
+    yield fetchUserColorDetails();
+  } catch (error) {
+    console.log("error in delete Colors:", error);
+  }
 }
 
 function* userSaga() {
@@ -108,6 +118,7 @@ function* userSaga() {
   yield takeLatest("SAGA/SET_USER_COLOR_DETAILS", setUserColorDetails);
   yield takeLatest("SAGA/FETCH_USER_COLOR_DETAILS", fetchUserColorDetails);
   yield takeLatest("SAGA/DELETE_PRESET", deleteUserPreset);
+  yield takeLatest("SAGA/DELETE_COLOR_SCHEME", deleteUserColorScheme);
 }
 
 export default userSaga;

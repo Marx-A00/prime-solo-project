@@ -52,7 +52,7 @@ the problem is that im accessing data before it is initialized~~
 
 [x] get POST route working for colors
 [x] get GET route working for colors
-- get DELETE route working for both
+[x] get DELETE route working for both
 - get colors to actually change for keyboard
 - create window or page for users to see their colors and presets
 

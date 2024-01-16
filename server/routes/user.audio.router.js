@@ -114,6 +114,7 @@ router.post("/", async (req, res) => {
     res.sendStatus(500);
   }
 });
+
 router.delete("/:id", async (req, res) => {
   let connection;
   try {
@@ -122,15 +123,11 @@ router.delete("/:id", async (req, res) => {
     connection = await pool.connect();
 
     connection.query("BEGIN;");
-    
 
     const sqlQuery = `
     DELETE FROM "presets"
       WHERE "id" = ${idOfPreset};
     `;
-
-
-    
 
     const presetsResponse = await connection.query(sqlQuery);
 

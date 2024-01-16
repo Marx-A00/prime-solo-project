@@ -1,4 +1,6 @@
 import Osc from "../../classes/Osc";
+
+
 import { combineReducers } from "redux";
 
 // perhaps find way to NOT rely on new Oscillator
@@ -17,6 +19,8 @@ filter.connect(out);
 //Preliminary audio set up 👆
 
 const initialOsc1State = {
+  isKeyboardListenerActive: true,
+  
   osc1Settings: {
     detune: 0,
     type: "sine",
@@ -37,6 +41,7 @@ const initialOsc1State = {
 };
 
 let nodes = [];
+
 
 const audioReducer = (state = initialOsc1State, action) => {
 
@@ -85,6 +90,8 @@ const audioReducer = (state = initialOsc1State, action) => {
     case "CHANGE_ADSR":
       return { ...state, envelope: { ...state.envelope, [id]: Number(value) } };
 
+      case 'DEACTIVATE_KEYBOARD_LISTENER':
+        return {...state, isKeyboardListenerActive: false}
     default:
       console.log("reducer error. action: ", action);
       return { ...state };

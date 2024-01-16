@@ -5,6 +5,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { useEffect, useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
+import ColorSchemeList from '../ColorSchemeList/ColorSchemeList'
 
 export default function ChangeKeyboardColorsInput() {
   const dispatch = useDispatch();
@@ -80,6 +81,8 @@ export default function ChangeKeyboardColorsInput() {
         />
         <button>Save Colors</button>
       </form>
+      <ColorSchemeList />
+
     </Box>
   );
 }

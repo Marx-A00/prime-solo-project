@@ -1,0 +1,15 @@
+.modal-container {
+    position: fixed; /* Fixed position to stay in place on scroll */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto; /* Auto width to adapt to content */
+    max-width: 90%; /* Max width to avoid touching the viewport edges */
+    max-height: 90vh; /* Max height based on the viewport height */
+    overflow: auto; /* Enable scrolling if content is larger than the modal */
+    background-color: white; /* Background color for the modal */
+    padding: 20px; /* Padding around the content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for modal pop-up effect */
+    z-index: 1000; /* Ensure it's above other content */
+}
+

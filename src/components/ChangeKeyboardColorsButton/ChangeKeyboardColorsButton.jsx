@@ -3,8 +3,11 @@ import Box from "@mui/material/Box";
 import ChangeKeyboardColorsInput from "../ChangeKeyboardColorsInput/ChangeKeyboardColorsInput";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
+import { useDispatch } from "react-redux";
 
 export default function ChangeKeyboardColorsButton() {
+  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(false);
   const [openDialog, handleDisplay] = React.useState(false);
   const handleClickToOpen = (e) => {
@@ -34,6 +37,10 @@ export default function ChangeKeyboardColorsButton() {
   };
 
   const openDialogBox = () => {
+    dispatch({
+      type: 'DEACTIVATE_KEYBOARD_LISTENER'
+    })
+
     handleDisplay(true);
   };
 

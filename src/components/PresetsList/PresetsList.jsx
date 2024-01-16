@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import './PresetsList.css'
 
 export default function PresetsList() {
-  const [state, setState] = useState();
-
   const dispatch = useDispatch();
   const userDetails = useSelector((store) => store.userAudioDetailsReducer);
   const userAudioSettings = userDetails.audioSettings;
@@ -18,8 +17,49 @@ export default function PresetsList() {
 
   return (
     <div>
-      <h2>User Details</h2>
-      <ul>
+      <table className="table-presets">
+        <thead>
+          <tr>
+            <th>Detune</th>
+            <th>Type</th>
+            <th>Filter Frequency</th>
+            <th>Filter Detune</th>
+            <th>Filter Q</th>
+            <th>Filter Gain</th>
+            <th>Filter Type</th>
+            <th>Envelope Attack</th>
+            <th>Envelope Decay</th>
+            <th>Envelope Sustain</th>
+            <th>Envelope Release</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userAudioSettings &&
+            userAudioSettings.map((detail) => (
+              <tr key={detail.id}>
+                <td>{detail.osc1_detune}</td>
+                <td>{detail.osc1_type}</td>
+                <td>{detail.filter_frequency}</td>
+                <td>{detail.filter_detune}</td>
+                <td>{detail.filter_Q}</td>
+                <td>{detail.filter_gain}</td>
+                <td>{detail.filter_type}</td>
+                <td>{detail.envelope_attack}</td>
+                <td>{detail.envelope_decay}</td>
+                <td>{detail.envelope_sustain}</td>
+                <td>{detail.envelope_release}</td>
+
+                <td>
+                  <button onClick={() => handlePresetDelete(detail.id)}>
+                    Delete Preset
+                  </button>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+      {/* <ul>
         {userAudioSettings &&
           userAudioSettings.map((detail) => (
             <li key={detail.id}>
@@ -44,7 +84,7 @@ export default function PresetsList() {
               </ul>
             </li>
           ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }
